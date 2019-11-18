@@ -18,7 +18,4 @@ tracker = SportsTracker(
     username=secrets['username'],
     password=secrets['password'],
 )
-workouts = tracker.list_all_workouts()
-for workout in workouts:
-    tracker.workout_saveas_gpx(workout['id'], f"{out_dir}/workout_{workout['id']}.gpx")
-    logging.debug(workout['id'])
+workouts = tracker.workouts_saveas_gpx(out_dir)
