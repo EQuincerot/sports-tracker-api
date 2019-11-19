@@ -1,5 +1,6 @@
 # sports-tracker-api
 Python API to download GPX files from https://www.sports-tracker.com using Chrome browser.
+This is far from complete or ideal, it is a minimum viable product which did the job for me. Tested on Macbook.
 
 ## Prerequisities
 

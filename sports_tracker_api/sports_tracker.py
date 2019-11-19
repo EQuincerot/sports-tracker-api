@@ -20,7 +20,7 @@ class SportsTracker:
         self.driver = webdriver.Chrome('/Users/ftrojan/lib/chromedriver/chromedriver', options=options)
 
     def list_dashboard_workouts(self):
-        self.driver.get(f"{self.url}/dashboard")
+        self.driver.get(f"{self.url}/diary/workout-list")
         sessionkey = {}
         try:
             element = WebDriverWait(self.driver, 10).until(
@@ -31,13 +31,14 @@ class SportsTracker:
             self.driver.find_element_by_class_name("submit").send_keys(Keys.RETURN)
             try:
                 WebDriverWait(self.driver, 10).until(
-                    ec.presence_of_element_located((By.CLASS_NAME, "feed-card"))
+                    ec.presence_of_element_located((By.CLASS_NAME, "diary-list__workouts"))
                 )
-                feeds = self.driver.find_elements_by_class_name("feed-card")
+                ul = self.driver.find_element_by_tag_name("ul")
+                feeds = ul.find_elements_by_tag_name("li")
                 logging.info(len(feeds))
                 workouts = []
                 for feed in feeds:
-                    link = feed.find_element_by_class_name("feed-card__link")
+                    link = feed.find_element_by_tag_name("a")
                     workout = {
                         'link': link.get_attribute("href")
                     }
