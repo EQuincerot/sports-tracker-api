@@ -13,7 +13,7 @@ logging.basicConfig(
 
 out_dir = "data"
 with open("data/secrets.yaml") as file:
-    secrets = yaml.load(file)
+    secrets = yaml.safe_load(file)
 tracker = SportsTracker(
     username=secrets['username'],
     password=secrets['password'],
